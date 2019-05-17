@@ -17,6 +17,8 @@ public class SeckillApplicationTests {
 
 	@Autowired
     RedisService redis;
+	@Autowired
+	UserDAO userDAO;
 
 	@Test
 	@Transactional(readOnly = false, rollbackFor = Throwable.class)
@@ -28,6 +30,11 @@ public class SeckillApplicationTests {
 //	    redis.set(UserKey.getById, "num", 1);
         redis.decr(UserKey.getById, "num", Integer.class);
         System.out.println(redis.get(UserKey.getById, "num", Integer.class));
+	}
+
+	@Test
+	public void testUser() {
+		System.out.println(userDAO.findAll());
 	}
 
 }
