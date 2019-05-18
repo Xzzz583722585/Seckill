@@ -2,26 +2,26 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
     <head>
         <title>Login</title>
-<!--        <meta name="_csrf" th:content="${_csrf.token}"/>-->
-<!--        <meta name="_csrf_header" th:content="${_csrf.headerName}"/>-->
+        <meta name="_csrf" th:content="${_csrf.token}"/>
+        <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
 
         <link type="text/css" rel="stylesheet" href="/css/style.css"/>
 
         <script type="text/javascript" src="/js/thirdparty/jquery-3.4.1.js"></script>
         <script type="text/javascript" src="/js/thirdparty/md5.js"></script>
 
-<!--        <script type="text/javascript" src="/js/system/config.js"></script>-->
+        <script type="text/javascript" src="/js/system/config.js"></script>
 
         <script type="text/javascript" src="/js/login/login.js"></script>
     </head>
-    <body onload='document.form.username.focus();'>
+    <body>
         <div id="loginForm">
             <h3>Login With Username and Password</h3>
+            <p hidden id="salt" th:text="${salt}"></p>
             <div class="error" th:if="${param.error}">
                 Incorrect username or password. Try again.
             </div>
 
-<!--            <form name='f' th:action="@{/login}" method='POST'>-->
             <div name="form">
                 <table>
                     <tr>

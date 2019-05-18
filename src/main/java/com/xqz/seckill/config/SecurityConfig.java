@@ -34,8 +34,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
                 .antMatchers("/**").access("hasRole('USER')").and()
             .formLogin()
                 .loginPage("/login").successForwardUrl("/hello/allusers").failureUrl("/login?error=true").permitAll().and()
-                .logout().permitAll().and()
-            .csrf().disable();
+                .logout().permitAll();
     }
 
     @Bean
