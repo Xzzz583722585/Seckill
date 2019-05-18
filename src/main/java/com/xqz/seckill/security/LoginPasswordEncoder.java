@@ -1,6 +1,7 @@
 package com.xqz.seckill.security;
 
 import com.xqz.seckill.utils.encryptor.Encyptor;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 public class LoginPasswordEncoder implements PasswordEncoder {

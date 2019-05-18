@@ -2,21 +2,27 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
     <head>
         <title>Login</title>
+<!--        <meta name="_csrf" th:content="${_csrf.token}"/>-->
+<!--        <meta name="_csrf_header" th:content="${_csrf.headerName}"/>-->
+
         <link type="text/css" rel="stylesheet" href="/css/style.css"/>
 
         <script type="text/javascript" src="/js/thirdparty/jquery-3.4.1.js"></script>
-        <!--<script type="text/javascript" src="/js/thirdparty/md5.js"></script>-->
+        <script type="text/javascript" src="/js/thirdparty/md5.js"></script>
 
-        <!--<script type="text/javascript" src="/js/login/login.js"></script>-->
+<!--        <script type="text/javascript" src="/js/system/config.js"></script>-->
+
+        <script type="text/javascript" src="/js/login/login.js"></script>
     </head>
-    <body onload='document.f.username.focus();'>
+    <body onload='document.form.username.focus();'>
         <div id="loginForm">
             <h3>Login With Username and Password</h3>
             <div class="error" th:if="${param.error}">
                 Incorrect username or password. Try again.
             </div>
 
-            <form name='f' th:action="@{/login}" method='POST'>
+<!--            <form name='f' th:action="@{/login}" method='POST'>-->
+            <div name="form">
                 <table>
                     <tr>
                         <td>User:</td>
@@ -28,11 +34,11 @@
                     </tr>
                     <tr>
                         <td colspan='2'>
-                            <input name="submit" type="submit" value="Login"/>
+                            <button onclick="login();">Login</button>
                         </td>
                     </tr>
                 </table>
-            </form>
+            </div>
         </div>
     </body>
 </html>

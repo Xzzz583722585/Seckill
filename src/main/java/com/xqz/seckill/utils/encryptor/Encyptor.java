@@ -23,6 +23,6 @@ public class Encyptor {
             ranSalt.append((char)(r.nextInt(58) + 65));
         }
         System.out.println(ranSalt);
-        System.out.println(Encyptor.md5("dlam1233", ranSalt.toString()));
+        System.out.println(Encyptor.md5("123", ranSalt.toString()));
     }
 }

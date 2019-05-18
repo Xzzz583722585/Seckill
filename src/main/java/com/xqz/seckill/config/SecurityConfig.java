@@ -20,7 +20,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 public class SecurityConfig extends WebSecurityConfigurerAdapter{
 
     @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+    protected void configure(AuthenticationManagerBuilder auth) {
         auth.authenticationProvider(getAuthenticationProvider());
         getUserDetailsService();
         getPasswordEncoder();
@@ -34,7 +34,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
                 .antMatchers("/**").access("hasRole('USER')").and()
             .formLogin()
                 .loginPage("/login").successForwardUrl("/hello/allusers").failureUrl("/login?error=true").permitAll().and()
-                .logout().permitAll();
+                .logout().permitAll().and()
+            .csrf().disable();
     }
 
     @Bean
