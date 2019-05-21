@@ -1,5 +1,6 @@
 package com.xqz.seckill.controller;
 
+import com.xqz.seckill.common.result.ResultMsg;
 import com.xqz.seckill.dao.UserDAO;
 import com.xqz.seckill.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +33,9 @@ public class HelloController {
 
     @GetMapping("/test")
     @ResponseBody
-    public String test(@Email String email){
-        return email;
+    public ResultMsg<String> test(@Email String email){
+        ResultMsg<String> result = ResultMsg.build();
+        result.setData(email);
+        return result;
     }
 }
