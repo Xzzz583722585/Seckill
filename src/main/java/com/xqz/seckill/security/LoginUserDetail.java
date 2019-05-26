@@ -59,4 +59,8 @@ public class LoginUserDetail implements UserDetails{
     public boolean isEnabled() {
         return this.isEnabled;
     }
+
+    public User getUser() {
+        return user;
+    }
 }

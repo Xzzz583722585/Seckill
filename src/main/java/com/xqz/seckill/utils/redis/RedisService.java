@@ -1,10 +1,11 @@
-package com.xqz.seckill.redis;
+package com.xqz.seckill.utils.redis;
 
 import com.xqz.seckill.utils.prefix.KeyPrefix;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.data.redis.serializer.StringRedisSerializer;
 import org.springframework.stereotype.Component;
+
+import java.util.concurrent.TimeUnit;
 
 @Component
 public class RedisService {
@@ -13,6 +14,14 @@ public class RedisService {
     RedisTemplate redisTemplate;
     @Autowired
     RedisTemplate stringRedisTemplate;
+
+    public void set(KeyPrefix prefix, String k, Object v, long exp){
+        if(v instanceof String){
+            stringRedisTemplate.opsForValue().set(prefix.getPrefix() + k, v, exp, TimeUnit.SECONDS);
+        }else{
+            redisTemplate.opsForValue().set(prefix.getPrefix() + k, v, exp, TimeUnit.SECONDS);
+        }
+    }
 
     public void set(KeyPrefix prefix, String k, Object v){
         if(v instanceof String){

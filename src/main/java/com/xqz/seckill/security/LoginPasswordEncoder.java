@@ -1,6 +1,7 @@
 package com.xqz.seckill.security;
 
 import com.xqz.seckill.utils.encryptor.Encyptor;
+import com.xqz.seckill.utils.string.StringUtil;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
@@ -16,8 +17,7 @@ public class LoginPasswordEncoder implements PasswordEncoder {
 
     @Override
     public boolean matches(CharSequence rawPassword, String presentedPassword) {
-        if("".equals(rawPassword) || rawPassword == null
-                || "".equals(presentedPassword) || presentedPassword == null){
+        if(StringUtil.isEmpty(rawPassword.toString()) || StringUtil.isEmpty(presentedPassword)){
             return false;
         }
 

@@ -2,6 +2,7 @@ package com.xqz.seckill.config;
 
 import com.xqz.seckill.security.DBAuthenticationProvider;
 import com.xqz.seckill.security.LoginPasswordEncoder;
+import com.xqz.seckill.security.LoginSuccessHandler;
 import com.xqz.seckill.security.LoginUserDetailService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -14,6 +15,7 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
 @Configuration
 @EnableWebSecurity
@@ -34,7 +36,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 //                .antMatchers("/**").access("hasRole('USER')")
                 .anyRequest().authenticated().and()
             .formLogin()
-                .loginPage("/login").successForwardUrl("/hello/allusers").failureUrl("/login?error=true").permitAll().and()
+                .loginPage("/login").successHandler(getAuthenticationSuccessHandler())
+                .failureUrl("/login?error=true").permitAll().and()
                 .logout().permitAll();
     }
 
@@ -51,5 +54,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
     @Bean
     public PasswordEncoder getPasswordEncoder(){
         return new LoginPasswordEncoder();
+    }
+
+    @Bean
+    public AuthenticationSuccessHandler getAuthenticationSuccessHandler(){
+        return new LoginSuccessHandler();
     }
 }

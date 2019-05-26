@@ -1,4 +1,4 @@
-package com.xqz.seckill.redis;
+package com.xqz.seckill.config;
 
 import com.xqz.seckill.utils.serializer.FastJsonSerializer;
 import org.springframework.cache.CacheManager;

@@ -18,6 +18,14 @@ public class DBAuthenticationProvider extends AbstractUserDetailsAuthenticationP
 
     @Override
     protected void additionalAuthenticationChecks(UserDetails userDetails, UsernamePasswordAuthenticationToken authentication) throws AuthenticationException {
+        if(userDetails == null || authentication == null || authentication.getCredentials() == null){
+            logger.debug("Authentication failed: password does not match stored value");
+
+            throw new BadCredentialsException(messages.getMessage(
+                    "AbstractUserDetailsAuthenticationProvider.badCredentials",
+                    "Bad credentials"));
+        }
+
         String rawPassword = userDetails.getPassword();
         String presentedPassword = authentication.getCredentials().toString();
 

@@ -22,7 +22,7 @@
                 Incorrect username or password. Try again.
             </div>
 
-            <div name="form">
+            <form th:action="@{/login}" method='POST' onsubmit="login();">
                 <table>
                     <tr>
                         <td>User:</td>
@@ -34,11 +34,11 @@
                     </tr>
                     <tr>
                         <td colspan='2'>
-                            <button onclick="login();">Login</button>
+                            <input type="submit" value="Login"/>
                         </td>
                     </tr>
                 </table>
-            </div>
+            </form>
         </div>
     </body>
 </html>

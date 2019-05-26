@@ -22,7 +22,7 @@ public class HelloController {
     @Autowired
     UserDAO userDAO;
 
-    @PostMapping("/allusers")
+    @GetMapping("/allusers")
     public String getAllBooks(Model model){
         List<User> users = userDAO.findAll();
         if(users != null) {
