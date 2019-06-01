@@ -31,7 +31,7 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {
         cookie.setMaxAge(UserPrefix.token.getExpireSec());
 
         response.addCookie(cookie);
-        response.sendRedirect("/hello/allusers");
+        response.sendRedirect("/goods/to_seckill_list");
     }
 
 }

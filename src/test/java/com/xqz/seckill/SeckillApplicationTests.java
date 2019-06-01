@@ -1,9 +1,9 @@
 package com.xqz.seckill;
 
+import com.xqz.seckill.dao.GoodsDAO;
 import com.xqz.seckill.dao.UserDAO;
-import com.xqz.seckill.domain.User;
 import com.xqz.seckill.domain.UserKey;
-import com.xqz.seckill.redis.RedisService;
+import com.xqz.seckill.utils.redis.RedisService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +19,8 @@ public class SeckillApplicationTests {
     RedisService redis;
 	@Autowired
 	UserDAO userDAO;
+	@Autowired
+	GoodsDAO goodsDAO;
 
 	@Test
 	@Transactional(readOnly = false, rollbackFor = Throwable.class)
@@ -33,8 +35,8 @@ public class SeckillApplicationTests {
 	}
 
 	@Test
-	public void testUser() {
-		System.out.println(userDAO.findAll());
+	public void daoTest() {
+		System.out.println(goodsDAO.findSeckillGoodsById(1));
 	}
 
 }
