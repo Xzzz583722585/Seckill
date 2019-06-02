@@ -1,5 +1,7 @@
 package com.xqz.seckill.domain;
 
+import com.xqz.seckill.vo.GoodsVO;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -8,16 +10,16 @@ import java.io.Serializable;
 import java.sql.Timestamp;
 
 @Entity
-public class Order implements Serializable {
+public class OrderInfo implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
-    private Integer userId;
-    private Integer goodsId;
-    private Integer deliveryAddrId;
+    private Long id;
+    private Long userId;
+    private Long goodsId;
+    private Long deliveryAddrId;
     private String goodsName;
     private Integer goodsCount;
     private Double goodsPrice;
@@ -30,35 +32,35 @@ public class Order implements Serializable {
         return serialVersionUID;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public Integer getUserId() {
+    public Long getUserId() {
         return userId;
     }
 
-    public void setUserId(Integer userId) {
+    public void setUserId(Long userId) {
         this.userId = userId;
     }
 
-    public Integer getGoodsId() {
+    public Long getGoodsId() {
         return goodsId;
     }
 
-    public void setGoodsId(Integer goodsId) {
+    public void setGoodsId(Long goodsId) {
         this.goodsId = goodsId;
     }
 
-    public Integer getDeliveryAddrId() {
+    public Long getDeliveryAddrId() {
         return deliveryAddrId;
     }
 
-    public void setDeliveryAddrId(Integer deliveryAddrId) {
+    public void setDeliveryAddrId(Long deliveryAddrId) {
         this.deliveryAddrId = deliveryAddrId;
     }
 
@@ -118,9 +120,15 @@ public class Order implements Serializable {
         this.payDate = payDate;
     }
 
+    public void setGoods(GoodsVO goodsVO){
+        this.goodsId = goodsVO.getId();
+        this.goodsName = goodsVO.getName();
+        this.goodsPrice = goodsVO.getPrice();
+    }
+
     @Override
     public String toString() {
-        return "Order{" +
+        return "OrderInfo{" +
                 "id=" + id +
                 ", userId=" + userId +
                 ", goodsId=" + goodsId +

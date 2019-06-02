@@ -2,11 +2,11 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Hello</title>
+    <title>秒杀商品列表</title>
 </head>
 <body>
     <h2>Hello</h2>
-    <div th:unless="${#lists.isEmpty(goodsList)}">
+    <div th:unless="${#lists.isEmpty(goodsVOList)}">
         <table class="table" id="goodslist">
             <tr>
                 <td>商品名称</td>
@@ -15,12 +15,12 @@
                 <td>库存数量</td>
                 <td>详情</td>
             </tr>
-            <tr th:each="goods,goodsStat : ${goodsList}">
-                <td th:text="${goods.name}"></td>
-                <td th:text="${goods.price}"></td>
-                <td th:text="${goods.seckillPrice}"></td>
-                <td th:text="${goods.seckillStock}"></td>
-                <td><a th:href="'/goods/to_goods_detail?goodsId=' + ${goods.id}">详情</a></td>　　　
+            <tr th:each="goodsVO,goodsStat : ${goodsVOList}">
+                <td th:text="${goodsVO.name}"></td>
+                <td th:text="${goodsVO.price}"></td>
+                <td th:text="${goodsVO.seckillPrice}"></td>
+                <td th:text="${goodsVO.seckillStock}"></td>
+                <td><a th:href="'/goods/to_goods_detail?goodsId=' + ${goodsVO.id}">详情</a></td>　　　
             </tr>
         </table>
     </div>

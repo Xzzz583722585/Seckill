@@ -18,23 +18,13 @@ import java.util.List;
 @RequestMapping("/hello")
 @Validated
 public class HelloController {
-    @Autowired
-    UserDAO userDAO;
-
-    @GetMapping("/allusers")
-    public String getAllBooks(Model model){
-        List<User> users = userDAO.findAll();
-        if(users != null) {
-            model.addAttribute("users", users);
-        }
-        return "goods_list";
-    }
 
     @GetMapping("/test")
     @ResponseBody
     public ResultMsg<String> test(@Email String email){
-        ResultMsg<String> result = ResultMsg.build();
+//        ResultMsg<String> result = ResultMsg.build();
 //        result.setData(email);
-        return result;
+//        return result;
+        return null;
     }
 }

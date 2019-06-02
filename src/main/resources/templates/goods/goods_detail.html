@@ -2,12 +2,12 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Hello</title>
+    <title>秒杀商品详情</title>
 
     <script type="text/javascript" src="/js/thirdparty/jquery-3.4.1.js"></script>
     <script type="text/javascript" src="/js/thirdparty/md5.js"></script>
 
-    <script type="text/javascript" src="/js/goods/seckill.js"></script>
+    <script type="text/javascript" src="/js/seckill/seckill.js"></script>
 </head>
 <body>
     <div class="panel panel-default">
@@ -19,7 +19,7 @@
         <table class="table" id="goodslist">
             <tr>
                 <td>商品名称</td>
-                <td colspan="3" th:text="${goods.name}"></td>
+                <td colspan="3" th:text="${goodsVO.name}"></td>
             </tr>
             <!--<tr>-->
                 <!--<td>商品图片</td>-->
@@ -27,7 +27,7 @@
             <!--</tr>-->
             <tr>
                 <td>秒杀开始时间</td>
-                <td th:text="${#dates.format(goods.startDate, 'yyyy-MM-dd HH:mm:ss')}"></td>
+                <td th:text="${#dates.format(goodsVO.startDate, 'yyyy-MM-dd HH:mm:ss')}"></td>
                 <td id="miaoshaTip">
                     <input type="hidden" id="remainSeconds" th:value="${remainSec}" />
                     <span id="seckill_content" th:if="${seckillStatus eq 0}">秒杀倒计时：<span id="countDown" th:text="${remainSec}"></span>秒</span>
@@ -35,23 +35,23 @@
                     <span th:if="${seckillStatus eq 2}">秒杀已结束</span>
                 </td>
                 <td>
-                    <!--<form id="miaoshaForm" method="POST" th:action="@{}">-->
+                    <form id="seckillForm" method="GET" th:action="@{/seckill/do_seckill}">
                         <button id="buyButton" style="display: none" class="btn btn-primary btn-block" type="submit">立即秒杀</button>
-                        <input type="hidden" name="goodsId" th:value="${goods.id}" />
-                    <!--</form>-->
+                        <input type="hidden" name="goodsId" th:value="${goodsVO.id}" />
+                    </form>
                 </td>
             </tr>
             <tr>
                 <td>商品原价</td>
-                <td colspan="3" th:text="${goods.price}"></td>
+                <td colspan="3" th:text="${goodsVO.price}"></td>
             </tr>
             <tr>
                 <td>秒杀价</td>
-                <td colspan="3" th:text="${goods.seckillPrice}"></td>
+                <td colspan="3" th:text="${goodsVO.seckillPrice}"></td>
             </tr>
             <tr>
                 <td>库存数量</td>
-                <td colspan="3" th:text="${goods.seckillStock}"></td>
+                <td colspan="3" th:text="${goodsVO.seckillStock}"></td>
             </tr>
         </table>
     </div>

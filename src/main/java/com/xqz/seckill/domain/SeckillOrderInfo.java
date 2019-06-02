@@ -7,56 +7,56 @@ import javax.persistence.Id;
 import java.io.Serializable;
 
 @Entity
-public class SeckillOrder implements Serializable {
+public class SeckillOrderInfo implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
-    private Integer userId;
-    private Integer goodsId;
-    private Integer OrderId;
+    private Long id;
+    private Long userId;
+    private Long goodsId;
+    private Long OrderId;
 
     public static long getSerialVersionUID() {
         return serialVersionUID;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public Integer getUserId() {
+    public Long getUserId() {
         return userId;
     }
 
-    public void setUserId(Integer userId) {
+    public void setUserId(Long userId) {
         this.userId = userId;
     }
 
-    public Integer getGoodsId() {
+    public Long getGoodsId() {
         return goodsId;
     }
 
-    public void setGoodsId(Integer goodsId) {
+    public void setGoodsId(Long goodsId) {
         this.goodsId = goodsId;
     }
 
-    public Integer getOrderId() {
+    public Long getOrderId() {
         return OrderId;
     }
 
-    public void setOrderId(Integer orderId) {
+    public void setOrderId(Long orderId) {
         OrderId = orderId;
     }
 
     @Override
     public String toString() {
-        return "SeckillOrder{" +
+        return "SeckillOrderInfo{" +
                 "id=" + id +
                 ", userId=" + userId +
                 ", goodsId=" + goodsId +

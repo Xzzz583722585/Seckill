@@ -8,10 +8,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 @Controller
 @RequestMapping("/goods")
 public class GoodsController {
@@ -21,21 +17,21 @@ public class GoodsController {
 
     @GetMapping("/to_seckill_list")
     public String getAllSeckillGoods(Model model){
-        model.addAttribute("goodsList", goodsService.findAllSeckillGoods());
-        return "goods_list";
+        model.addAttribute("goodsVOList", goodsService.findAllSeckillGoods());
+        return "goods/goods_list";
     }
 
     @GetMapping("/to_goods_detail")
-    public String getSeckillGoodsById(Integer goodsId, Model model){
-        GoodsVO seckillGoods = goodsService.findSeckillGoodsById(goodsId);
+    public String getSeckillGoodsById(Long goodsId, Model model){
+        GoodsVO goodsVO = goodsService.findSeckillGoodsById(goodsId);
         Long now = System.currentTimeMillis();
         Integer seckillStatus;
         Integer remainSec;
 
-        if(now < seckillGoods.getStartDate().getTime()){    // 秒杀还未开始，准备倒计时
+        if(now < goodsVO.getStartDate().getTime()){    // 秒杀还未开始，准备倒计时
             seckillStatus = 0;
-            remainSec = (int)((seckillGoods.getStartDate().getTime() - now)/1000);
-        } else if(now > seckillGoods.getEndDate().getTime()){   // 秒杀已经结束
+            remainSec = (int)((goodsVO.getStartDate().getTime() - now)/1000);
+        } else if(now > goodsVO.getEndDate().getTime()){   // 秒杀已经结束
             seckillStatus = 2;
             remainSec = -1;
         } else{   // 秒杀开始
@@ -43,9 +39,9 @@ public class GoodsController {
             remainSec = 0;
         }
 
-        model.addAttribute("goods", goodsService.findSeckillGoodsById(goodsId));
+        model.addAttribute("goodsVO", goodsVO);
         model.addAttribute("seckillStatus", seckillStatus);
         model.addAttribute("remainSec", remainSec);
-        return "goods_detail";
+        return "goods/goods_detail";
     }
 }

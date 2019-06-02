@@ -20,5 +20,5 @@ public interface GoodsDAO extends JpaRepository<Goods, Integer>{
             "JOIN seckill_goods sg\n" +
             "ON g.id = sg.goods_id\n" +
             "WHERE g.id = :goodsId", nativeQuery = true)
-    GoodsVO findSeckillGoodsById(@Param("goodsId") Integer goodsId);
+    GoodsVO findSeckillGoodsById(@Param("goodsId") Long goodsId);
 }

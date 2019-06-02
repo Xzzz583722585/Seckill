@@ -47,8 +47,9 @@ public class GoodsVO extends Goods {
 
     @Override
     public String toString() {
-        return super.toString() + " GoodsVO{" +
-                "seckillPrice=" + seckillPrice +
+        return "GoodsVO{" +
+                "goods=" + super.toString() +
+                ", seckillPrice=" + seckillPrice +
                 ", seckillStock=" + seckillStock +
                 ", startDate=" + startDate +
                 ", endDate=" + endDate +

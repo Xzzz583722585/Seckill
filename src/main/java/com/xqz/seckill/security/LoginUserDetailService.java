@@ -19,7 +19,7 @@ public class LoginUserDetailService implements UserDetailsService {
             throw new UsernameNotFoundException("用户不存在");
         }
 
-        return new LoginUserDetail(user, true,
+        return new LoginUserDetails(user, true,
                 true, true, true);
     }
 

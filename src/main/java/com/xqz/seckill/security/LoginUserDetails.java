@@ -8,7 +8,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Arrays;
 import java.util.Collection;
 
-public class LoginUserDetail implements UserDetails{
+public class LoginUserDetails implements UserDetails{
 
     private User user;
     private Boolean isAccountNonExpired;
@@ -16,8 +16,8 @@ public class LoginUserDetail implements UserDetails{
     private Boolean isCredentialsNonExpired;
     private Boolean isEnabled;
 
-    public LoginUserDetail(User user, Boolean isAccountNonExpired,
-                           Boolean isAccountNonLocked, Boolean isCredentialsNonExpired, Boolean isEnabled){
+    public LoginUserDetails(User user, Boolean isAccountNonExpired,
+                            Boolean isAccountNonLocked, Boolean isCredentialsNonExpired, Boolean isEnabled){
         this.user = user;
         this.isAccountNonExpired = isAccountNonExpired;
         this.isAccountNonLocked = isAccountNonLocked;

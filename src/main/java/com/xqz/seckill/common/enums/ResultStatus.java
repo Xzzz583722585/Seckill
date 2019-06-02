@@ -47,9 +47,9 @@ public enum ResultStatus {
     /**
      * 秒杀模块
      */
-    MIAO_SHA_OVER(40001,"商品已经秒杀完毕"),
-    REPEATE_MIAOSHA(40002,"不能重复秒杀"),
-    MIAOSHA_FAIL(40003,"秒杀失败");
+    SECKILL_OVER(40001,"商品已经秒杀完毕"),
+    REPEATE_SECKILL(40002,"不能重复秒杀"),
+    SECKILL_FAIL(40003,"秒杀失败");
 
     /**
      * 商品模块
@@ -70,23 +70,11 @@ public enum ResultStatus {
         return this.code;
     }
 
-    public void setCode(int code) {
-        this.code = code;
-    }
-
     public String getMessage() {
         return this.message;
     }
 
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
     public String getName() {
-        return this.name();
-    }
-
-    public String getOutputName() {
         return this.name();
     }
 
