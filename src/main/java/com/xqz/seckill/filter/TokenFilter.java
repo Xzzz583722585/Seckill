@@ -2,7 +2,7 @@ package com.xqz.seckill.filter;
 
 import com.xqz.seckill.domain.User;
 import com.xqz.seckill.security.LoginSuccessHandler;
-import com.xqz.seckill.utils.prefix.UserPrefix;
+import com.xqz.seckill.common.prefix.UserPrefix;
 import com.xqz.seckill.utils.redis.RedisService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.annotation.Order;
@@ -28,12 +28,15 @@ public class TokenFilter implements Filter {
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         HttpServletRequest request = (HttpServletRequest) servletRequest;
 
-        for(Cookie cookie: request.getCookies()){
-            if(LoginSuccessHandler.COOKIE_NAME_TOKEN.equals(cookie.getName())){
-                User user = redis.get(UserPrefix.token, cookie.getValue(), User.class);
-                if(user != null){
-                    redis.set(UserPrefix.token, cookie.getValue(), user, UserPrefix.token.getExpireSec());
-                    cookie.setMaxAge(UserPrefix.token.getExpireSec());
+        Cookie[] cookies = request.getCookies();
+        if(cookies != null){
+            for(Cookie cookie: cookies){
+                if(LoginSuccessHandler.COOKIE_NAME_TOKEN.equals(cookie.getName())){
+                    User user = redis.get(UserPrefix.token, cookie.getValue(), User.class);
+                    if(user != null){
+                        redis.set(UserPrefix.token, cookie.getValue(), user, UserPrefix.token.getExpireSec());
+                        cookie.setMaxAge(UserPrefix.token.getExpireSec());
+                    }
                 }
             }
         }

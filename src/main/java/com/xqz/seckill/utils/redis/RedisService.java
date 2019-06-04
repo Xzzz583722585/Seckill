@@ -1,6 +1,6 @@
 package com.xqz.seckill.utils.redis;
 
-import com.xqz.seckill.utils.prefix.KeyPrefix;
+import com.xqz.seckill.common.prefix.KeyPrefix;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;

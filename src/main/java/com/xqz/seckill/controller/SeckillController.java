@@ -6,6 +6,7 @@ import com.xqz.seckill.domain.OrderInfo;
 import com.xqz.seckill.domain.SeckillOrderInfo;
 import com.xqz.seckill.domain.User;
 import com.xqz.seckill.security.LoginUserDetails;
+import com.xqz.seckill.security.SecurityContextHelper;
 import com.xqz.seckill.service.GoodsService;
 import com.xqz.seckill.service.SeckillService;
 import com.xqz.seckill.vo.GoodsVO;
@@ -19,6 +20,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/seckill")
 public class SeckillController {
+
+    @Autowired
+    SecurityContextHelper securityContextHelper;
 
     @Autowired
     GoodsService goodsService;
@@ -35,8 +39,7 @@ public class SeckillController {
         }
 
         // 判断是否已经秒杀过该商品
-        User user = ((LoginUserDetails) SecurityContextHolder.getContext()
-                .getAuthentication().getPrincipal()).getUser();
+        User user = securityContextHelper.getUser();
         SeckillOrderInfo seckillOrder = seckillService
                 .findSeckillOrderByUserIdAndGoodsId(user.getId(), goodsId);
         if(seckillOrder != null){

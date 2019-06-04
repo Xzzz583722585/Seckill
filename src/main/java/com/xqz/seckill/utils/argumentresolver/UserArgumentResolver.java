@@ -1,7 +1,6 @@
-package com.xqz.seckill.argumentresolver;
+package com.xqz.seckill.utils.argumentresolver;
 
 import org.springframework.core.MethodParameter;
-import org.springframework.stereotype.Component;
 import org.springframework.web.bind.support.WebDataBinderFactory;
 import org.springframework.web.context.request.NativeWebRequest;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;

@@ -1,4 +1,4 @@
-package com.xqz.seckill.utils.prefix;
+package com.xqz.seckill.common.prefix;
 
 public class UserPrefix extends BasePrefix {
 

@@ -1,6 +1,6 @@
 package com.xqz.seckill.security;
 
-import com.xqz.seckill.utils.prefix.UserPrefix;
+import com.xqz.seckill.common.prefix.UserPrefix;
 import com.xqz.seckill.utils.redis.RedisService;
 import com.xqz.seckill.utils.token.UUIDUtil;
 import org.springframework.beans.factory.annotation.Autowired;
