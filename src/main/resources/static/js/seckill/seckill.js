@@ -13,3 +13,21 @@ function showSeckillGoodsDetails() {
         }
     }, 1000)
 }
+
+function doSeckill() {
+    alert("doSeckill")
+    $.ajax({
+        type: "GET",
+        url: baseUrl + "/seckill/do_seckill",
+        data: {
+            goodsId: getUrlParam("goodsId")
+        },
+        datatype: "json",
+        success: function(data){
+            console.log(data)
+        },
+        error: function(e){
+            console.log(e)
+        }
+    })
+}

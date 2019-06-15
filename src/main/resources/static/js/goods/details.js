@@ -1,6 +1,4 @@
 $(function () {
-    console.log()
-
     $.ajax({
         type: "GET",
         url: baseUrl + "/goods/goods_detail",
