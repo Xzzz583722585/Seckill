@@ -1,5 +1,4 @@
 function showSeckillGoodsDetails() {
-    console.log($("#remainSeconds").val())
     var inter = setInterval(function () {
         var sec = $("#remainSeconds").val()
 
@@ -15,16 +14,29 @@ function showSeckillGoodsDetails() {
 }
 
 function doSeckill() {
-    alert("doSeckill")
+
     $.ajax({
-        type: "GET",
+        type: "POST",
         url: baseUrl + "/seckill/do_seckill",
         data: {
             goodsId: getUrlParam("goodsId")
         },
         datatype: "json",
-        success: function(data){
-            console.log(data)
+        success: function(result){
+            console.log(result)
+            switch(result.code){
+                case 0:
+                    window.location.href = ""
+                    break
+                case 40001:
+                    window.location.href = "/htm/seckill/seckill_fail.html?errmsg=" + result.message
+                    break
+                case 40002:
+                    window.location.href = "/htm/seckill/seckill_fail.html?errmsg=" + result.message
+                    break
+                default:
+                    console.log("error code" + result.code)
+            }
         },
         error: function(e){
             console.log(e)

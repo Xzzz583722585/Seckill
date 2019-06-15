@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html>
 <head>
     <meta charset="UTF-8">
     <title>订单详情</title>
@@ -10,7 +10,7 @@
     <table class="table" id="goodslist">
         <tr>
             <td>商品名称</td>
-            <td th:text="${goodsVO.name}" colspan="3"></td>
+            <td id="goodsName" colspan="3"></td>
         </tr>
         <!--<tr>-->
             <!--<td>商品图片</td>-->
@@ -18,21 +18,16 @@
         <!--</tr>-->
         <tr>
             <td>订单价格</td>
-            <td colspan="2" th:text="${orderInfo.goodsPrice}"></td>
+            <td colspan="2"id="goodsPrice"></td>
         </tr>
         <tr>
             <td>下单时间</td>
-            <td th:text="${#dates.format(orderInfo.createDate, 'yyyy-MM-dd HH:mm:ss')}" colspan="2"></td>
+            <td colspan="2" id="createDate"></td>
         </tr>
         <tr>
             <td>订单状态</td>
             <td >
-                <span th:if="${orderInfo.status eq 0}">未支付</span>
-                <span th:if="${orderInfo.status eq 1}">待发货</span>
-                <span th:if="${orderInfo.status eq 2}">已发货</span>
-                <span th:if="${orderInfo.status eq 3}">已收货</span>
-                <span th:if="${orderInfo.status eq 4}">已退款</span>
-                <span th:if="${orderInfo.status eq 5}">已完成</span>
+                <span id="status"></span>
             </td>
             <td>
                 <button class="btn btn-primary btn-block" type="submit" id="payButton">立即支付</button>

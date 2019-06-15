@@ -18,6 +18,14 @@ public class ResultMsg<T> extends AbstractMsg implements Serializable {
         return new ResultMsg(status);
     }
 
+    public static <T> ResultMsg<T> success() {
+        return new ResultMsg(ResultStatus.SUCCESS);
+    }
+
+    public static <T> ResultMsg<T> error(ResultStatus status) {
+        return new ResultMsg(status);
+    }
+
     public T getData() {
         return data;
     }

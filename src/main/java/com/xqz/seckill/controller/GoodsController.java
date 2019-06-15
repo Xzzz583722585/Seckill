@@ -6,6 +6,7 @@ import com.xqz.seckill.utils.redis.RedisService;
 import com.xqz.seckill.vo.GoodsDetailsVO;
 import com.xqz.seckill.vo.GoodsVO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.web.csrf.CsrfFilter;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,7 +16,6 @@ import java.util.Collection;
 
 @Controller
 @RequestMapping("/goods")
-@ResponseBody
 public class GoodsController {
 
     @Autowired
@@ -26,12 +26,14 @@ public class GoodsController {
     @Autowired
     GoodsService goodsService;
 
-    @GetMapping(value = "/seckill_list")
+    @GetMapping("/seckill_list")
+    @ResponseBody
     public Collection<GoodsVO> getAllSeckillGoods(){
         return goodsService.findAllSeckillGoods();
     }
 
-    @GetMapping(value = "/goods_detail")
+    @GetMapping("/goods_detail")
+    @ResponseBody
     public GoodsDetailsVO getSeckillGoodsById(Long goodsId){
         GoodsVO goodsVO = goodsService.findSeckillGoodsById(goodsId);
         Long now = System.currentTimeMillis();

@@ -1,10 +1,11 @@
-var token = $("meta[name='_csrf']").attr("content");
-var header = $("meta[name='_csrf_header']").attr("content");
+var csrfToken = $("meta[name='_csrf']").attr("content");
+var csrfHeader = $("meta[name='_csrf_header']").attr("content");
 
 $(function () {
-    var token = $("meta[name='_csrf']").attr("content");
-    var header = $("meta[name='_csrf_header']").attr("content");
+    window.sessionStorage.setItem("csrfToken", csrfToken)
+    window.sessionStorage.setItem("csrfHeader", csrfHeader)
+
     $(document).ajaxSend(function (e, xhr, options) {
-        xhr.setRequestHeader(header, token);
+        xhr.setRequestHeader(csrfHeader, csrfToken);
     });
 });
