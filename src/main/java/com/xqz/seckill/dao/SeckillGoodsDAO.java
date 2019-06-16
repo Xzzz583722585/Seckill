@@ -8,6 +8,6 @@ import org.springframework.data.repository.query.Param;
 
 public interface SeckillGoodsDAO extends JpaRepository<SeckillGoods, Integer>{
     @Modifying
-    @Query(value = "UPDATE seckill_goods SET stock = stock - :num WHERE goods_id = :goodsId", nativeQuery = true)
+    @Query(value = "UPDATE seckill_goods SET stock = stock - :num WHERE goods_id = :goodsId and stock > 0", nativeQuery = true)
     int reduceStock(@Param("num") Integer num, @Param("goodsId") Long goodsId);
 }
