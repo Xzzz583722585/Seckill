@@ -6,4 +6,5 @@ import com.xqz.seckill.vo.GoodsVO;
 
 public interface OrderService {
     OrderInfo createOrder(User user, GoodsVO goodsVO);
+    OrderInfo findOrderById(Long id);
 }

@@ -3,7 +3,7 @@ $(function () {
 
     $.ajax({
         type: "GET",
-        url: baseUrl + "/goods/goods_detail",
+        url: baseUrl + "/goods/goods_details",
         data: {
             goodsId: getUrlParam("goodsId")
         },

@@ -31,4 +31,9 @@ public class OrderServiceImpl implements OrderService{
 
         return orderDAO.save(order);
     }
+
+    @Override
+    public OrderInfo findOrderById(Long id) {
+        return orderDAO.findById(id);
+    }
 }

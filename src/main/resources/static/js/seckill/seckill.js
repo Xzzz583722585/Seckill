@@ -14,7 +14,6 @@ function showSeckillGoodsDetails() {
 }
 
 function doSeckill() {
-
     $.ajax({
         type: "POST",
         url: baseUrl + "/seckill/do_seckill",
@@ -23,10 +22,9 @@ function doSeckill() {
         },
         datatype: "json",
         success: function(result){
-            console.log(result)
             switch(result.code){
                 case 0:
-                    window.location.href = ""
+                    window.location.href = "/htm/order/order_detail.html?orderId=" + result.data
                     break
                 case 40001:
                     window.location.href = "/htm/seckill/seckill_fail.html?errmsg=" + result.message

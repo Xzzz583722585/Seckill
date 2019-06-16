@@ -32,7 +32,7 @@ public class GoodsController {
         return goodsService.findAllSeckillGoods();
     }
 
-    @GetMapping("/goods_detail")
+    @GetMapping("/goods_details")
     @ResponseBody
     public GoodsDetailsVO getSeckillGoodsById(Long goodsId){
         GoodsVO goodsVO = goodsService.findSeckillGoodsById(goodsId);
