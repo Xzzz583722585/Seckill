@@ -45,6 +45,12 @@
 			<artifactId>commons-pool2</artifactId>
 		</dependency>
 
+		<!-- mq -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-amqp</artifactId>
+		</dependency>
+
 		<!-- web:不要引入tomcat包，那是坏的 -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
