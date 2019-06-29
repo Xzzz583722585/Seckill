@@ -9,3 +9,5 @@
 ### 7.嵌套Bean
 ### 8.页面缓存
 ### 9.ResultMsg包裝返回結果
+### 10.封装Redis DAO
+### 11.Redis不应影响正常业务，增加try catch
