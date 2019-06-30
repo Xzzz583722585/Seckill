@@ -1,6 +1,7 @@
 package com.xqz.seckill.common.enums;
 
 public enum OrderStatus {
+    QUEUING(-1, "排队中"),
     INITED(0, "新建未支付"),
     PAYED(1, "已支付"),
     DELIVERED(2, "已发货"),

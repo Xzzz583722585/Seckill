@@ -4,6 +4,7 @@ public class GoodsPrefix extends BasePrefix {
 
     private static final int SEC = 60;
 
+    public static GoodsPrefix goods = new GoodsPrefix(SEC, "goods");
     public static GoodsPrefix goodsList = new GoodsPrefix(SEC, "goods_list");
     public static GoodsPrefix goodsDetails = new GoodsPrefix(SEC, "goods_details");
 

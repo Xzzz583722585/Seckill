@@ -7,5 +7,5 @@ import com.xqz.seckill.vo.GoodsVO;
 
 public interface SeckillService {
     SeckillOrderInfo findSeckillOrderByUserIdAndGoodsId(Long userId, Long goodsId);
-    OrderInfo createSeckillOrder(User user, GoodsVO goodsVO);
+    OrderInfo createSeckillOrder(User user, Long goodsId);
 }

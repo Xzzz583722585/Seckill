@@ -24,7 +24,8 @@ function doSeckill() {
         success: function(result){
             switch(result.code){
                 case 0:
-                    window.location.href = "/htm/order/order_detail.html?orderId=" + result.data
+                    console.log(result)
+                    // window.location.href = "/htm/order/order_detail.html?orderId=" + result.data
                     break
                 case 40001:
                     window.location.href = "/htm/seckill/seckill_fail.html?errmsg=" + result.message

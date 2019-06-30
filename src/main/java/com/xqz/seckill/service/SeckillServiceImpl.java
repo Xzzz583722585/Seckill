@@ -1,30 +1,29 @@
 package com.xqz.seckill.service;
 
+import com.xqz.seckill.common.enums.OrderStatus;
 import com.xqz.seckill.common.prefix.SeckillOrderPrefix;
-import com.xqz.seckill.dao.SeckillGoodsDAO;
 import com.xqz.seckill.dao.SeckillOrderInfoDAO;
 import com.xqz.seckill.domain.OrderInfo;
 import com.xqz.seckill.domain.SeckillOrderInfo;
 import com.xqz.seckill.domain.User;
+import com.xqz.seckill.mq.SeckillMQSender;
 import com.xqz.seckill.utils.redis.RedisService;
-import com.xqz.seckill.vo.GoodsVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class SeckillServiceImpl implements SeckillService{
 
     @Autowired
     RedisService redis;
+    @Autowired
+    SeckillMQSender seckillMqSender;
 
     @Autowired
     OrderService orderService;
 
     @Autowired
     SeckillOrderInfoDAO seckillOrderDAO;
-    @Autowired
-    SeckillGoodsDAO seckillGoodsDAO;
 
     @Override
     public SeckillOrderInfo findSeckillOrderByUserIdAndGoodsId(Long userId, Long goodsId) {
@@ -38,22 +37,15 @@ public class SeckillServiceImpl implements SeckillService{
     }
 
     @Override
-    @Transactional
-    public OrderInfo createSeckillOrder(User user, GoodsVO goodsVO) {
+    public OrderInfo createSeckillOrder(User user, Long goodsId) {
         // 减库存
-        seckillGoodsDAO.reduceStock(1, goodsVO.getId());
+        seckillMqSender.reduceStock(goodsId);
 
         // 下订单
-        OrderInfo order = orderService.createOrder(user, goodsVO);
+        seckillMqSender.createSeckillOrder(user, goodsId);
 
-        SeckillOrderInfo seckillOrder = new SeckillOrderInfo();
-        seckillOrder.setUserId(user.getId());
-        seckillOrder.setGoodsId(goodsVO.getId());
-        seckillOrder.setOrderId(order.getId());
-
-        redis.set(SeckillOrderPrefix.seckillOrderInfo, user.getId() + ":" + goodsVO.getId(), seckillOrder);
-        seckillOrderDAO.save(seckillOrder);
-
+        OrderInfo order = new OrderInfo();
+        order.setStatus(OrderStatus.QUEUING.getCode());
         return order;
     }
 }
