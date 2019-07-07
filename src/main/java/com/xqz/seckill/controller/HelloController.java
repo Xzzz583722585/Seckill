@@ -1,13 +1,13 @@
 package com.xqz.seckill.controller;
 
-import com.xqz.seckill.mq.SeckillMQSender;
+import com.xqz.seckill.security.SecurityContextHelper;
+import com.xqz.seckill.websocket.WebSocketServer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+
+import java.io.IOException;
 
 @Controller
 @RequestMapping("/hello")
@@ -15,12 +15,27 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class HelloController {
 
     @Autowired
-    SeckillMQSender seckillMqSender;
+    SecurityContextHelper securityContextHelper;
+    @Autowired
+    WebSocketServer socket;
 
-    @GetMapping("/test")
+    @GetMapping("/ws")
+    public String ws(){
+        return "ws";
+    }
+
+    @GetMapping("/send")
     @ResponseBody
-    public String test(@RequestParam String message){
-//        seckillMqSender.send(message);
+    public String send(String message) throws IOException {
+        String username = securityContextHelper.getUser().getUsername();
+        socket.send(username, message);
+        return "SUCCESS";
+    }
+
+    @GetMapping("/bc")
+    @ResponseBody
+    public String bc(String message) throws IOException {
+        socket.broadcast(message);
         return "SUCCESS";
     }
 }

@@ -39,7 +39,7 @@ public class SeckillController implements InitializingBean {
     @ResponseBody
     public ResultMsg<OrderInfo> doSeckill(Long goodsId){
         // 判断库存
-        Long seckillStock = redis.decr(SeckillGoodsPrefix.seckillGoodsStock, goodsId.toString(), Long.class);
+        Integer seckillStock = redis.get(SeckillGoodsPrefix.seckillGoodsStock, goodsId.toString(), Integer.class);
         if(seckillStock < 0){
             return ResultMsg.build(ResultStatus.SECKILL_OVER);
         }
@@ -53,9 +53,12 @@ public class SeckillController implements InitializingBean {
         }
 
         // 秒杀
-        OrderInfo order = seckillService.createSeckillOrder(user, goodsId);
-        ResultMsg<OrderInfo> resultMsg = ResultMsg.build(ResultStatus.SUCCESS);
-        resultMsg.setData(order);
+        ResultMsg<OrderInfo> resultMsg = ResultMsg.build(ResultStatus.SECKILL_OVER);
+        if(redis.decr(SeckillGoodsPrefix.seckillGoodsStock, goodsId.toString()) >= 0){
+            OrderInfo order = seckillService.createSeckillOrder(user, goodsId);
+            resultMsg = ResultMsg.build(ResultStatus.SUCCESS);
+            resultMsg.setData(order);
+        }
 
         return resultMsg;
     }

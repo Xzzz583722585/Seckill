@@ -49,19 +49,11 @@ public class RedisService {
         return v != null;
     }
 
-    public <T> Long incr(KeyPrefix prefix, String k, Class<T> valueClazz){
-        if(valueClazz == String.class){
-            return stringRedisTemplate.opsForValue().increment(prefix.getPrefix() + k);
-        }else{
-            return redisTemplate.opsForValue().increment(prefix.getPrefix() + k);
-        }
+    public Long incr(KeyPrefix prefix, String k){
+        return redisTemplate.opsForValue().increment(prefix.getPrefix() + k);
     }
 
-    public <T> Long decr(KeyPrefix prefix, String k, Class<T> valueClazz){
-        if(valueClazz == String.class){
-            return stringRedisTemplate.opsForValue().decrement(prefix.getPrefix() + k);
-        }else{
-            return redisTemplate.opsForValue().decrement(prefix.getPrefix() + k);
-        }
+    public Long decr(KeyPrefix prefix, String k){
+        return redisTemplate.opsForValue().decrement(prefix.getPrefix() + k);
     }
 }
