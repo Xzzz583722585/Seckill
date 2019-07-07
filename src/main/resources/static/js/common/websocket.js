@@ -1,4 +1,4 @@
-$(function () {
+function websocket(receive) {
     var socket;
 
     if(typeof(WebSocket) == "undefined") {
@@ -6,14 +6,14 @@ $(function () {
     }else{
         console.log("您的浏览器支持WebSocket");
 
-        socket = new WebSocket("ws://localhost:8080/notification");
+        socket = new WebSocket(wsBaseUrl + "/notification");
 
         socket.onopen = function() {
             console.log("Socket 已打开");
         };
 
         socket.onmessage = function(msg) {
-            console.log(msg.data);
+            receive(msg.data)
         };
 
         socket.onclose = function() {
@@ -24,4 +24,4 @@ $(function () {
             alert("Socket发生了错误");
         }
     }
-});
+}

@@ -1,4 +1,4 @@
-package com.xqz.seckill.mq;
+package com.xqz.seckill.config;
 
 import org.springframework.amqp.core.Binding;
 import org.springframework.amqp.core.BindingBuilder;

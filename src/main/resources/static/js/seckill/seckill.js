@@ -22,10 +22,14 @@ function doSeckill() {
         },
         datatype: "json",
         success: function(result){
+            console.log(result)
+
             switch(result.code){
                 case 0:
-                    console.log(result)
-                    // window.location.href = "/htm/order/order_detail.html?orderId=" + result.data
+                    $("body").html("排队中")
+                    websocket(function (data) {
+                        window.location.href = "/htm/order/order_detail.html?orderId=" + data
+                    })
                     break
                 case 40001:
                     window.location.href = "/htm/seckill/seckill_fail.html?errmsg=" + result.message

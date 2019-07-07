@@ -1,5 +1,6 @@
-package com.xqz.seckill.mq;
+package com.xqz.seckill.utils.mq;
 
+import com.xqz.seckill.config.SeckillMQConfig;
 import com.xqz.seckill.domain.User;
 import com.xqz.seckill.security.SecurityContextHelper;
 import org.springframework.amqp.core.AmqpTemplate;

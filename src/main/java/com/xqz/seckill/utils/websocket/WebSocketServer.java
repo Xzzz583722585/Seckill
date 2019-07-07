@@ -1,4 +1,4 @@
-package com.xqz.seckill.websocket;
+package com.xqz.seckill.utils.websocket;
 
 import org.springframework.stereotype.Component;
 
@@ -12,7 +12,6 @@ import java.util.concurrent.ConcurrentHashMap;
 public class WebSocketServer {
 
     private static ConcurrentHashMap<String, Session> username2Session = new ConcurrentHashMap<>();
-//    private static ConcurrentHashMap<Session, String> session2Name = new ConcurrentHashMap<>();
 
     @OnOpen
     public void onOpen(Session session) {

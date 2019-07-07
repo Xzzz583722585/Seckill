@@ -1,13 +1,12 @@
 package com.xqz.seckill.service;
 
 import com.xqz.seckill.common.enums.OrderStatus;
-import com.xqz.seckill.common.prefix.SeckillGoodsPrefix;
 import com.xqz.seckill.common.prefix.SeckillOrderPrefix;
 import com.xqz.seckill.dao.SeckillOrderInfoDAO;
 import com.xqz.seckill.domain.OrderInfo;
 import com.xqz.seckill.domain.SeckillOrderInfo;
 import com.xqz.seckill.domain.User;
-import com.xqz.seckill.mq.SeckillMQSender;
+import com.xqz.seckill.utils.mq.SeckillMQSender;
 import com.xqz.seckill.utils.redis.RedisService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
